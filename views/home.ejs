@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>hospital management system</title>
+</head>
+<style>
+	table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	}
+	
+	td,
+	th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+	}
+	
+	tr:nth-child(even) {
+	background-color: #dddddd;
+	}
+	
+</style>
+
+<body>
+	<h1>All Patients</h1>
+	<table>
+		<tr>
+		<th>Name</th>
+		<th>Number</th>
+		<th>DOB</th>
+		<th>City</th>
+		<th>Room No.</th>
+		<th>Discharge</th>
+		</tr>
+	<% data.forEach(element=> { %>
+		<tr>
+			<td><%= element.name %></td>
+			<td><%= element.number %></td>
+			<td><%= element.dob %></td>
+			<td><%= element.city %></td>
+			<td><%= element.roomNo %></td>
+			<td>
+				<form action="/discharge" method="post">
+					<input type="text" style="display: none;"
+						name="name" value="<%= element.name %>">
+					<button type="submit">Discharge</button>
+				</form>
+			</td>
+		</tr>
+		<% }) %>
+		</table>
+	<h1>Add Patient</h1>
+
+	<form action="/" method="post">
+		<input type="text" placeholder="Name" name="name">
+		<input type="number" placeholder="Number" name="number">
+		<input type="text" placeholder="DOB" name="dob">
+		<input type="text" placeholder="City" name="city">
+		<button type="submit">Add</button>
+	</form>
+</body>
+
+</html>
